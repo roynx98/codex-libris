@@ -1,6 +1,8 @@
 package main
 
 import (
+	"identity/lib/config"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -8,8 +10,8 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "Hello, World!"})
+		c.String(200, config.Default.ServiceName+" is running")
 	})
 
-	r.Run(":8080")
+	r.Run(":" + config.Default.Port)
 }
